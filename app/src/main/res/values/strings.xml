@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">TouristGuide</string>
+    <string name="app_name">Tourist Guide</string>
+    <string name="title_home">Home</string>
+    <string name="title_scan">Scan</string>
+    <string name="title_monuments">Monuments</string>
+    <string name="title_favorite">Favorites</string>
 </resources>
