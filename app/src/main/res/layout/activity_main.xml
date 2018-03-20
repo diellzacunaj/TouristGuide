@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="diellza.touristguide.MainActivity">
+    tools:context="diellza.touristguide.Activities.MainActivity">
 
-    <TextView
-        android:id="@+id/message"
+    <FrameLayout
+        android:id="@+id/flContent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Home"
-         />
+        android:layout_height="match_parent"
+        android:layout_above="@id/mainBN"
 
+        />
 
 <android.support.design.widget.BottomNavigationView
     android:id="@+id/mainBN"

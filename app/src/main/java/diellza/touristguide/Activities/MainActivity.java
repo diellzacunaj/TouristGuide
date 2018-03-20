@@ -1,11 +1,16 @@
-package diellza.touristguide;
+package diellza.touristguide.Activities;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import diellza.touristguide.Fragments.CategoryFragment;
+import diellza.touristguide.Helpers.DisableShiftingBNV;
+import diellza.touristguide.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,16 +24,15 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
                     return true;
                 case R.id.navigation_scan:
-                    mTextMessage.setText(R.string.title_scan);
                     return true;
                 case R.id.navigation_monuments:
-                    mTextMessage.setText(R.string.title_monuments);
+                    Fragment fragment=new CategoryFragment();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.flContent, fragment, fragment.getClass().getSimpleName()).addToBackStack(null).commit();
                     return true;
                 case R.id.navigation_favorites:
-                    mTextMessage.setText(R.string.title_favorite);
                     return true;
             }
             return false;
@@ -45,5 +49,11 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.mainBN);
         DisableShiftingBNV.disableShiftingMode(navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+    public void setTitle(String s)
+    {
+        getSupportActionBar().setTitle(s);
+
     }
 }
