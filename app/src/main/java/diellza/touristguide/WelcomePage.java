@@ -1,19 +1,24 @@
 package diellza.touristguide;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Window;
 import android.widget.ProgressBar;
 
 import diellza.touristguide.Activities.MainActivity;
 
-public class WelcomePage extends AppCompatActivity {
+public class WelcomePage extends Activity {
 
     private ProgressBar mProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //delete the title bar from welcome screen
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.activity_welcome_page);
 
         mProgress = (ProgressBar) findViewById(R.id.splash_screen_progress_bar);
