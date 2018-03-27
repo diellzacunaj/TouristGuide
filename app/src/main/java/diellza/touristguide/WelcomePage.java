@@ -14,9 +14,6 @@ public class WelcomePage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
         setContentView(R.layout.activity_welcome_page);
 
         mProgress = (ProgressBar) findViewById(R.id.splash_screen_progress_bar);
@@ -49,11 +46,4 @@ public class WelcomePage extends AppCompatActivity {
         startActivity(intent);
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt("progresi", mProgress.getProgress());
-        super.onSaveInstanceState(outState);
-
-    }
 }
