@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="diellza.touristguide.WelcomePage">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="80dp"
+        android:src="@drawable/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="130dp"
+        android:id="@+id/logo"
+        />
+
+    <ImageView
+        android:id="@+id/logo1"
+        android:layout_width="190dp"
+        android:layout_height="70dp"
+        android:layout_alignTop="@+id/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="62dp"
+        android:src="@drawable/logo1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/website"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:text="www.touristguide.com"
+        android:textStyle="italic"
+        android:textSize="15sp"
+        android:layout_marginBottom="20dp"/>
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logo1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="58dp"
+        android:text="loading..."
+        android:textSize="12sp"
+        android:textStyle="italic"/>
+
+    <ProgressBar
+        android:id="@+id/splash_screen_progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textView"
+        android:max="100"
+        android:progress="2"
+        android:progressBackgroundTint="@color/colorPrimaryDark" />
+
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>
