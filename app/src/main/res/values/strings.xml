@@ -4,4 +4,6 @@
     <string name="title_scan">Scan</string>
     <string name="title_monuments">Monuments</string>
     <string name="title_favorite">Favorites</string>
+    <string name="scan_qr_code">Scan QR Code</string>
+    <string name="scan_label">Scan the QR code on the poster and see further informations about monuments</string>
 </resources>

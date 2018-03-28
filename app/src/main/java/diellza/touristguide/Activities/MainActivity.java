@@ -9,14 +9,14 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import diellza.touristguide.Fragments.CategoryFragment;
+import diellza.touristguide.Fragments.ScanFragment;
 import diellza.touristguide.Helpers.DisableShiftingBNV;
 import diellza.touristguide.R;
 
 public class MainActivity extends AppCompatActivity {
 
 
-    private TextView mTextMessage;
-
+    Fragment fragment;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -26,9 +26,13 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     return true;
                 case R.id.navigation_scan:
+                    fragment=new ScanFragment();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.flContent, fragment, fragment.getClass().getSimpleName()).addToBackStack(null).commit();
+
                     return true;
                 case R.id.navigation_monuments:
-                    Fragment fragment=new CategoryFragment();
+                    fragment=new CategoryFragment();
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.flContent, fragment, fragment.getClass().getSimpleName()).addToBackStack(null).commit();
                     return true;
@@ -45,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        mTextMessage = (TextView) findViewById(R.id.message);
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.mainBN);
         DisableShiftingBNV.disableShiftingMode(navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
