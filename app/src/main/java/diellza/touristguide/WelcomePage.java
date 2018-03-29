@@ -47,7 +47,7 @@ public class WelcomePage extends Activity {
     }
 
     private void startApp () {
-        Intent intent = new Intent (WelcomePage.this,MainActivity.class);
+        Intent intent = new Intent (WelcomePage.this,Home.class);
         startActivity(intent);
     }
 
