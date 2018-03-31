@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import diellza.touristguide.Fragments.MonumentsFragment;
 import diellza.touristguide.Models.Category;
 import diellza.touristguide.R;
 
@@ -68,6 +69,13 @@ holder.categoryTitle.setText(category.getTitle());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                fragment=new MonumentsFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString(CATEGORY_TITLE, category.getTitle());
+                fragment.setArguments(bundle);
+                android.support.v4.app.FragmentManager manager = ((AppCompatActivity)context).getSupportFragmentManager();
+                manager.beginTransaction()
+                        .replace(R.id.flContent, fragment, fragment.getClass().getSimpleName()).addToBackStack(null).commit();
             }
         });
 

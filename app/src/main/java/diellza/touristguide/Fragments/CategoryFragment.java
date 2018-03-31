@@ -62,7 +62,7 @@ public class CategoryFragment extends Fragment {
         categories.add(new Category("Xhamite",R.drawable.mosque));
         categories.add(new Category("Kishat",R.drawable.church));
         categories.add(new Category("Urat",R.drawable.bridge));
-        categories.add(new Category("Kalaja",R.drawable.fortress));
+        categories.add(new Category("Monumente",R.drawable.fortress));
         categories.add(new Category("Ndertesa",R.drawable.house));
         categories.add(new Category("Natyre",R.drawable.nature));
     }

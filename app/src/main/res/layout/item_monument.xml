@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cvMonument"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/item_monument_margin"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:paddingBottom="@dimen/item_monument_margin"
+       >
+
+        <ImageView
+            android:id="@+id/itemMonumentImg"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/item_monument_margin"
+            android:layout_marginTop="@dimen/item_monument_margin"
+            android:layout_marginRight="@dimen/item_monument_margin"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_background"
+             />
+
+        <TextView
+            android:id="@+id/itemMonumentTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_monument_margin"
+            android:layout_toRightOf="@id/itemMonumentImg"
+            android:text="Title"
+            android:layout_toLeftOf="@id/itemMonumentFavourite"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/itemMonumentOverview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/itemMonumentTitle"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/itemMonumentImg"
+            android:text="Overview"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@android:color/black" />
+
+        <ImageView
+            android:id="@+id/itemMonumentFavourite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/item_monument_margin"
+            android:clickable="true"
+            android:src="@drawable/ic_favorite_border_black_24dp"
+            />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
