@@ -8,4 +8,8 @@
     <string name="scan_label">Scan the QR code on the poster and see further informations about monuments</string>
     <string name="map">Shfleto Vendet Kulturore</string>
     <string name="qr_code">Skano QR Code\n</string>
+    <string name="about_project">Ky aplikacion eshte një zgjidhje e mire për shumë turistë të cilët kanë kohë të limituar dhe ju
+duhet të përzgjedhin vetëm vendet që ju duken më atraktive. Zakonishtë këtë përzgjedhje e bëjnë
+perms web-faqeve dhe librave guide, mirëpo një aplikacion mobil që do të siguronte informata të
+vlefshme për turistët do të ishte më I dobishëm dhe praktik.</string>
 </resources>

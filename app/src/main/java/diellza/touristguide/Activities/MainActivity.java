@@ -6,11 +6,12 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.TextView;
+
 
 import diellza.touristguide.Fragments.CategoryFragment;
 import diellza.touristguide.Fragments.ScanFragment;
 import diellza.touristguide.Helpers.DisableShiftingBNV;
+import diellza.touristguide.Home;
 import diellza.touristguide.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
+                    fragment=new Home();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.flContent, fragment, fragment.getClass().getSimpleName()).addToBackStack(null).commit();
                     return true;
                 case R.id.navigation_scan:
                     fragment=new ScanFragment();
@@ -50,7 +54,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+        fragment=new Home();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.flContent, fragment, fragment.getClass().getSimpleName()).commit();
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.mainBN);
+
         DisableShiftingBNV.disableShiftingMode(navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
