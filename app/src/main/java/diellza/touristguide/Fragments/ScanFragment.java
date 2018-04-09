@@ -29,6 +29,7 @@ public class ScanFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_scan, container, false);
+        MainActivity.setNavItemChecked(1);
        ((MainActivity) getActivity()).setTitle("Scan");
         scantxt = v.findViewById(R.id.scanQRCode);
 

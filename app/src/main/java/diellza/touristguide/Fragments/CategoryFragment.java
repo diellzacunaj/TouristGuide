@@ -39,6 +39,7 @@ public class CategoryFragment extends Fragment {
 
         View v=inflater.inflate(R.layout.fragment_category,container,false);
         initalizeData();
+        MainActivity.setNavItemChecked(2);
         ((MainActivity)getActivity()).setTitle("Kategorite");
         recyclerView=v.findViewById(R.id.rvCategory);
 

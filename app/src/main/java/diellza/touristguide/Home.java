@@ -11,8 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SearchView;
 
-
-
+import diellza.touristguide.Activities.MainActivity;
 
 
 public class Home extends Fragment {
@@ -26,7 +25,7 @@ public class Home extends Fragment {
 
         View v=inflater.inflate(R.layout.activity_home,container,false);
 
-
+       MainActivity.setNavItemChecked(0);
 
         searchView = new SearchView(getContext());
         searchView.setOnSearchClickListener(new View.OnClickListener() {

@@ -5,6 +5,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 
@@ -18,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     Fragment fragment;
+    static BottomNavigationView navigation;
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -26,19 +29,15 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     fragment=new Home();
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.flContent, fragment, fragment.getClass().getSimpleName()).addToBackStack(null).commit();
+                    showFragment(fragment);
                     return true;
                 case R.id.navigation_scan:
                     fragment=new ScanFragment();
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.flContent, fragment, fragment.getClass().getSimpleName()).addToBackStack(null).commit();
-
+                    showFragment(fragment);
                     return true;
                 case R.id.navigation_monuments:
                     fragment=new CategoryFragment();
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.flContent, fragment, fragment.getClass().getSimpleName()).addToBackStack(null).commit();
+                    showFragment(fragment);
                     return true;
                 case R.id.navigation_favorites:
                     return true;
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.flContent, fragment, fragment.getClass().getSimpleName()).commit();
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.mainBN);
+       navigation = (BottomNavigationView) findViewById(R.id.mainBN);
 
         DisableShiftingBNV.disableShiftingMode(navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -67,6 +66,18 @@ public class MainActivity extends AppCompatActivity {
     public void setTitle(String s)
     {
         getSupportActionBar().setTitle(s);
+
+    }
+    public static void setNavItemChecked(int i) {
+        Menu m=navigation.getMenu();
+        MenuItem mi=m.getItem(i);
+        mi.setChecked(true);
+    }
+
+    public void showFragment(Fragment f)
+    {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.flContent, f, f.getClass().getSimpleName()).addToBackStack(null).commit();
 
     }
 }
