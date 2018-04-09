@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import diellza.touristguide.Fragments.CategoryFragment;
 import diellza.touristguide.Fragments.ScanFragment;
 import diellza.touristguide.Helpers.DisableShiftingBNV;
-import diellza.touristguide.Home;
+import diellza.touristguide.Fragments.HomeFragment;
 import diellza.touristguide.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    fragment=new Home();
+                    fragment=new HomeFragment();
                     showFragment(fragment);
                     return true;
                 case R.id.navigation_scan:
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        fragment=new Home();
+        fragment=new HomeFragment();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.flContent, fragment, fragment.getClass().getSimpleName()).commit();
 

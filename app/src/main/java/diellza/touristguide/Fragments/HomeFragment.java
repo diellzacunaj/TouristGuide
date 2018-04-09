@@ -1,4 +1,4 @@
-package diellza.touristguide;
+package diellza.touristguide.Fragments;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,9 +12,10 @@ import android.widget.Button;
 import android.widget.SearchView;
 
 import diellza.touristguide.Activities.MainActivity;
+import diellza.touristguide.R;
 
 
-public class Home extends Fragment {
+public class HomeFragment extends Fragment {
 
     Button view_categories, qr_code;
     SearchView searchView;
@@ -24,7 +25,7 @@ public class Home extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View v=inflater.inflate(R.layout.activity_home,container,false);
-
+        ((MainActivity) getActivity()).setTitle("Home");
        MainActivity.setNavItemChecked(0);
 
         searchView = new SearchView(getContext());

@@ -1,4 +1,4 @@
-package diellza.touristguide;
+package diellza.touristguide.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.Window;
 import android.widget.ProgressBar;
 
-import diellza.touristguide.Activities.MainActivity;
+import diellza.touristguide.R;
 
 public class WelcomePage extends Activity {
 
