@@ -1,112 +1,87 @@
 package diellza.touristguide.Activities;
 
-import android.content.res.Configuration;
-import android.hardware.Camera;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
-import android.widget.Toast;
 
-import java.io.IOException;
+import android.widget.RelativeLayout;
+
+import com.google.zxing.Result;
 
 import diellza.touristguide.R;
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 /**
  * Created by SINKOPA on 3/28/2018.
  */
 
 
-public class ScanQRCodeActivity extends AppCompatActivity {
+public class ScanQRCodeActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
-
-    SurfaceView surfaceView;
-    SurfaceHolder surfaceHolder;
-    Camera camera;
+    private ZXingScannerView scannerView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_qrcode);
-        try {
-            camera = Camera.open();
+        addScanView();
+    }
+
+    private void addScanView() {
+        scannerView = new ZXingScannerView(this);
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        addContentView(scannerView, lp);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        scannerView.stopCameraPreview();
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        scannerView.stopCamera();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (scannerView == null) {
+            addScanView();
         }
-        catch (Exception e){
-            Toast.makeText(this, "Try again", Toast.LENGTH_SHORT).show();
-        }
-        surfaceView=(SurfaceView) findViewById(R.id.surface);
-        surfaceView.setZOrderMediaOverlay(true);
-        surfaceHolder = surfaceView.getHolder();
+        scannerView.setResultHandler(this);
+        scannerView.startCamera();
+    }
 
 
-        try {
-            camera.setPreviewDisplay(surfaceHolder);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        surfaceHolder.addCallback(new SurfaceHolder.Callback() {
+    @Override
+    public void handleResult(Result result) {
+        final String myResult = result.getText();
+        Log.d("QRCodeScanner", result.getText());
+        Log.d("QRCodeScanner", result.getBarcodeFormat().toString());
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Scan Result");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
-            public void surfaceCreated(SurfaceHolder holder) {
-                Camera.Parameters parameters = camera.getParameters();
-
-                if (getResources().getConfiguration().orientation != Configuration.ORIENTATION_LANDSCAPE) {
-                    parameters.set("orientation", "portrait");
-                    camera.setDisplayOrientation(90);
-                    parameters.setRotation(90);
-                } else {
-                    parameters.set("orientation", "landscape");
-                    camera.setDisplayOrientation(0);
-                    parameters.setRotation(0);
-                }
-                camera.setParameters(parameters);
-
-                try {
-                    camera.setPreviewDisplay(holder);
-                    camera.startPreview();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-            }
-
-            @Override
-            public void surfaceDestroyed(SurfaceHolder holder) {
+            public void onClick(DialogInterface dialog, int which) {
+                scannerView.resumeCameraPreview(ScanQRCodeActivity.this);
             }
         });
-
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        try {
-            camera.stopPreview();
-            camera.setPreviewCallback(null);
-            camera.release();
-            camera = null;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        try {
-            camera = Camera.open();
-            camera.setPreviewCallback(null);
-            camera.setPreviewDisplay(surfaceHolder);
-            camera.startPreview();
-            camera.startPreview();
-        } catch (Exception e) {
-            Log.d("CAMERA", "Error starting camera preview: " + e.getMessage());
-        }
-
+        builder.setNeutralButton("Visit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //   start new activity based on result
+            }
+        });
+        builder.setMessage(result.getText());
+        AlertDialog alert1 = builder.create();
+        alert1.show();
     }
 }

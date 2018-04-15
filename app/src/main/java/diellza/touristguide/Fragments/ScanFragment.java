@@ -13,9 +13,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+
 import diellza.touristguide.Activities.MainActivity;
 import diellza.touristguide.Activities.ScanQRCodeActivity;
 import diellza.touristguide.R;
+
 
 /**
  * Created by SINKOPA on 3/28/2018.
@@ -75,7 +78,8 @@ public class ScanFragment extends Fragment {
 
     private void startScanQRCodeActivity()
     {
-        Intent intent = new Intent(getContext(), ScanQRCodeActivity.class);
-        startActivity(intent);
+        Intent i=new Intent(getContext(),ScanQRCodeActivity.class);
+        startActivity(i);
     }
+
 }

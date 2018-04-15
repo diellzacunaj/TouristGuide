@@ -1,5 +1,6 @@
 package diellza.touristguide.Activities;
 
+import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -16,10 +17,16 @@ import diellza.touristguide.Fragments.HomeFragment;
 import diellza.touristguide.R;
 
 public class MainActivity extends AppCompatActivity {
-
+public  static final String COUNT_KEY="touristguide.activities.MainActivity";
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(COUNT_KEY,count);
+    }
 
     Fragment fragment;
     static BottomNavigationView navigation;
+    int count=0;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -49,13 +56,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(savedInstanceState!=null) {
+            count = savedInstanceState.getInt(COUNT_KEY, 0);
+        }
         setContentView(R.layout.activity_main);
 
 
-
-        fragment=new HomeFragment();
+if(count==0) {
+     fragment=new HomeFragment();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.flContent, fragment, fragment.getClass().getSimpleName()).commit();
+          .replace(R.id.flContent, fragment, fragment.getClass().getSimpleName()).commit();
+        count++;
+}
 
        navigation = (BottomNavigationView) findViewById(R.id.mainBN);
 
