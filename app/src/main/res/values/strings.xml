@@ -12,4 +12,16 @@
 duhet të përzgjedhin vetëm vendet që ju duken më atraktive. Zakonishtë këtë përzgjedhje e bëjnë
 perms web-faqeve dhe librave guide, mirëpo një aplikacion mobil që do të siguronte informata të
 vlefshme për turistët do të ishte më I dobishëm dhe praktik.</string>
+
+
+
+    <string name="unique_number">Unique number</string>
+    <string name="name">Name</string>
+    <string name="detail_class">Class</string>
+    <string name="detail_type">Type</string>
+    <string name="detail_period">Period</string>
+    <string name="deatil_century">Century</string>
+    <string name="detail_history">History</string>
+    <string name="get_directions">Get Directions</string>
+    <string name="title_detail_activity">Detail Activity</string>
 </resources>

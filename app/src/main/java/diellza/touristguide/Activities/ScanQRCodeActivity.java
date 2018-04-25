@@ -1,6 +1,7 @@
 package diellza.touristguide.Activities;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,7 +22,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 public class ScanQRCodeActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
     private ZXingScannerView scannerView;
-
+    public static  final String TAG_ID="touristguide.Activities.DetailActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +62,7 @@ public class ScanQRCodeActivity extends AppCompatActivity implements ZXingScanne
 
 
     @Override
-    public void handleResult(Result result) {
+    public void handleResult(final Result result) {
         final String myResult = result.getText();
         Log.d("QRCodeScanner", result.getText());
         Log.d("QRCodeScanner", result.getBarcodeFormat().toString());
@@ -77,7 +78,9 @@ public class ScanQRCodeActivity extends AppCompatActivity implements ZXingScanne
         builder.setNeutralButton("Visit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //   start new activity based on result
+                Intent i =new Intent(ScanQRCodeActivity.this,DetailActivity.class);
+                i.putExtra(TAG_ID,result.getText());
+                startActivity(i);
             }
         });
         builder.setMessage(result.getText());

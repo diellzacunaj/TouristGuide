@@ -1,15 +1,18 @@
 package diellza.touristguide.Models;
 
 
-public class Monument {
+import java.io.Serializable;
 
-    private int ID;
+public class Monument implements Serializable{
+
+    private long ID;
     private String title;
     private String overview;
     private String history;
-    private String founder;
-    private int year;
-    private String entryFee;
+    private String className;
+    private String type;
+    private String period;
+    private String century;
     private String address;
     private double longitude;
     private double latitude;
@@ -17,16 +20,22 @@ public class Monument {
     private int overviewImg;
     private int historyImg;
 
-    public Monument(int ID, String title, String overview, String history, String founder, int year,
-                    String entryFee, String address, double longitude, double latitude, String category,
+    public Monument(int ID,
+                    String title,
+                    String overview,
+                    String history,
+                    String className, String type,
+                    String period,
+                    String century,String address, double longitude, double latitude, String category,
                     int overviewImg, int historyImg) {
         this.ID = ID;
         this.title = title;
         this.overview = overview;
         this.history = history;
-        this.founder = founder;
-        this.year = year;
-        this.entryFee = entryFee;
+        this.className = className;
+        this.type = type;
+        this.century=century;
+        this.period = period;
         this.address = address;
         this.longitude = longitude;
         this.latitude = latitude;
@@ -49,11 +58,11 @@ public class Monument {
         this.historyImg = historyImg;
     }
 
-    public int getID() {
+    public long getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(long ID) {
         this.ID = ID;
     }
 
@@ -81,21 +90,15 @@ public class Monument {
         this.history = history;
     }
 
-    public String getFounder() {
-        return founder;
+    public String getClassName() {
+        return className;
     }
 
-    public void setFounder(String founder) {
-        this.founder = founder;
+    public void setClassName(String className) {
+        this.className = className;
     }
 
-    public int getYear() {
-        return year;
-    }
 
-    public void setYear(int year) {
-        this.year = year;
-    }
 
     public String getAddress() {
         return address;
@@ -141,11 +144,27 @@ public class Monument {
         this.historyImg = historyImg;
     }
 
-    public String getEntryFee() {
-        return entryFee;
+    public String getType() {
+        return type;
     }
 
-    public void setEntryFee(String entryFee) {
-        this.entryFee = entryFee;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(String period) {
+        this.period = period;
+    }
+
+    public String getCentury() {
+        return century;
+    }
+
+    public void setCentury(String century) {
+        this.century = century;
     }
 }

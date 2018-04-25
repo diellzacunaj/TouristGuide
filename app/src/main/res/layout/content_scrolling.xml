@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="diellza.touristguide.Activities.DetailActivity"
+    tools:showIn="@layout/fragment_item_detail">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/getDirections"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_weight="2"
+                app:srcCompat="@drawable/ic_directions"
+                android:clickable="true"/>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_weight="4"
+                android:gravity="start"
+                app:srcCompat="@drawable/ic_location" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="@string/get_directions" />
+
+            <TextView
+                android:id="@+id/addressTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="4"
+                android:gravity="center"
+                android:text="Address" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/unique_number"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/uniqueNumbertTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Unique Number" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/item_monument_margin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/name"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/nameTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Name" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_monument_margin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/detail_class"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/classTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Class" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/detail_type"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/typeTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Type" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_monument_margin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/detail_period"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/periodTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Period" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_monument_margin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/deatil_century"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/centuryTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Century" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/detail_history"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/historyTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Xhamia e Sinan Pashës ndodhet në Zonën Historike të qytetit të Prizrenit. Është ndërtuar në vitin 1615 nga ana e Sofi Sinan Pashës - person i shquar, njeri i dijes, me pozitë të rëndësishme në administratën Osmane. Me pozitën e saj dominuese, dimensionet, formën, proporcionin e minares ndaj kupolës, materialet dhe teknikën e ndërtimit, dekorimet e pasura në enterier, Xhamia e Sinan Pashës paraqet njërin prej monumenteve më karakteristike të Prizrenit. Xhamia është vendosur mbi një bazament të ngritur ku qasja nga rruga bëhet në anën veriore nëpërmjet shkallëve të gdhendura nga guri. Ka planimetri katrore me një nishë në pjesën jug-lindore që e bën xhaminë më specifike në krahasim me xhamitë tjera në Kosovë. Është ndërtuar nga gurët lumorë të latuar, të lidhur me llaç gëlqeror, ndërsa nga ana e jashtme është veshur me gurë të gdhendur (të cilët supozohet që janë marrë nga gërmadhat e Manastirit të Kryeengjëjve). Minarja e xhamisë është ndërtuar prej gurëve shtufe (siga), me bazë katrore dhe trung rrethor. Në pjesën e sipërme ndodhet një Sherefe. Para hyrjes në xhami ndodhet hajati i hapur, i punuar prej guri. Hajati ka tri kupola të mbuluara me plumb të cilat mbështeten në shtylla guri me bazë rrethore. Xhamia mbulohet me një kupolë të gjerë më diametër 42.5 m. Enterieri është hapësirë unike, e ndriçuar përmes dritareve të radhitura në nivele, me kupolë të pikturuar me motive florale në tri faza. " />
+
+    </LinearLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

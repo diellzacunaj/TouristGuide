@@ -1,7 +1,9 @@
 package diellza.touristguide.Fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,13 +25,20 @@ import diellza.touristguide.R;
 public class MonumentsFragment extends Fragment {
 
 
-    RecyclerView recyclerView;
-    List<Monument> monumentArrayList;
-    List<Monument> monuments1 = new ArrayList<>();
-    String key;
+    private RecyclerView recyclerView;
+    private static List<Monument> monumentArrayList;
+    private static List<Monument> monuments1 = new ArrayList<>();
+    private String key;
+
+    public static List<Monument> getMonuments1() {
+        return monuments1;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+
         initalizeData();
         Bundle bundle = getArguments();
         String title = bundle.getString(CategoryRecyclerViewAdapter.CATEGORY_TITLE, "");
@@ -48,7 +57,6 @@ public class MonumentsFragment extends Fragment {
         ((MainActivity) getActivity()).setTitle("Monuments");
         View v = inflater.inflate(R.layout.fragment_monuments, container, false);
         recyclerView = v.findViewById(R.id.rvMonument);
-        Log.d("ERRRORRR", "bundle");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getActivity());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -58,12 +66,19 @@ public class MonumentsFragment extends Fragment {
         return v;
     }
 
-    private void initalizeData() {
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        monuments1.clear();
+        Log.e("CLEAR",monuments1.size()+"");
+    }
+
+    private static void initalizeData() {
         monumentArrayList = new ArrayList<>();
 
         /////////xhamite
 
-        monumentArrayList.add(new Monument(1,
+        monumentArrayList.add(new Monument(337,
                 "Xhamia e Sinan Pashes",
                 "Është njëra prej monumenteve më karakterisitike të Prizrenit. E vendosur në qendrën historike.",
                 "Xhamia e Sinan Pashës ndodhet në Zonën Historike të qytetit të Prizrenit." +
@@ -80,29 +95,31 @@ public class MonumentsFragment extends Fragment {
                         " hapur, i punuar prej guri. Hajati ka tri kupola të mbuluara me plumb të cilat mbështeten në shtylla guri me bazë" +
                         " rrethore. Xhamia mbulohet me një kupolë të gjerë më diametër 42.5 m. Enterieri është hapësirë unike, e ndriçuar" +
                         " përmes dritareve të radhitura në nivele, me kupolë të pikturuar me motive florale në tri faza.",
-                "Sofi Sinan Pasha",
-                1615,
-                "Free",
+                "Monument",
+                "Arkitekturale",
+                "Osmane",
+                "XVII",
                 "Mimar Sinani,Prizren 20000",
                 42.209136,
                 20.741279,
                 "Xhamite",
                 R.drawable.sinan_pasha,
                 R.drawable.sinan_pasha));
-        monumentArrayList.add(new Monument(2,
+        monumentArrayList.add(new Monument(349,
                 "Xhamia e Suziut",
                 "Njihet si një ndër xhamitë më të vjetra në Prizren, e ndërtuar në periudhën osmane gjatë shekullit XVI.",
                 "Në popull njihet me emrin xhamia e Sozisë. Është e ndërtuar në vitin 1513 me financim të dijetarit të njohur të asaj kohe Suzi Çelebiu. Ai bashkë me xhaminë ndërtoi edhe mejtepin, bibliotekën (në historinë e bibliotekave të Kosovës njihet si biblioteka e parë e Kosovës), një çezme dhe një urë në lagjen e Sozisë. Është e njohur vepra poetike e tij e shkruar”Gazavetnameja”. Përmendet se renovimin dhe ngritjen e minares së Soziut e ka bërë Ymer beu. Viteve nëntëdhjeta xhamia është riparuar plotësisht, dhe është në gjendje të mirë funksionale. ",
-                "Suzi Çelebiu",
-                1513,
-                "Free",
+                "Monument",
+                "Arkitekturale",
+                "Osmane",
+                "XVI",
                 "Suzi Çelebia, Prizren, 20000",
                 42.209583,
                 20.733954,
                 "Xhamite",
                 R.drawable.xhamia_soziut,
                 R.drawable.xhamia_soziut));
-        monumentArrayList.add(new Monument(3,
+        monumentArrayList.add(new Monument( 345,
                 "Xhamia e Namazgjasë",
                 "Njihet si një ndër xhamitë më të vjetra në Prizren, e ndërtuar në periudhën osmane gjatë shekullit XVI.",
                 "Eshte ndërtuar në vitin 1513 me financim të dijetarit të njohur të asaj kohe Suzi Çelebiu. Ai bashkë me xhaminë" +
@@ -110,9 +127,10 @@ public class MonumentsFragment extends Fragment {
                         " një çezme dhe një urë në lagjen e Sozisë. Është e njohur vepra poetike e tij e shkruar”Gazavetnameja”. Përmendet se " +
                         "renovimin dhe ngritjen e minares së Soziut e ka bërë Ymer beu. Viteve nëntëdhjeta xhamia është riparuar plotësisht," +
                         " dhe është në gjendje të mirë funksionale. ",
-                "Isa Beu, komandant i Fatih Sulltan Mehmedit",
-                1455,
-                "Free",
+                "Monument",
+                "Arkitekturale",
+                "Osmane",
+                "XV",
                 "De Rada, Prizren, 20000",
                 42.214133,
                 20.731059,
@@ -122,7 +140,7 @@ public class MonumentsFragment extends Fragment {
 
         //////Kishat
 
-        monumentArrayList.add(new Monument(11,
+        monumentArrayList.add(new Monument(1974,
                 "Kisha e Shën Premtes",
                 "Ose Xhamia e Xhumasë është një kishe dhe ish-xhami e vjetër në rrugën e qyteti i Prizrenit.E ndërtuar në vitin 1306 nga Shtjefën Millutini.",
                 "Kisha e Shën Premtes, e cila gjendet në Zonën Historike të Prizrenit, u rindërtua me urdhërin e mbretit Millutin, më 1306/7." +
@@ -131,36 +149,39 @@ public class MonumentsFragment extends Fragment {
                         "e kishës pothuajse pajtohen se kjo kishë është rindërtuar mbi një tempull të vjetër. Supozohet se themelet e kishës paleokristiane të faz" +
                         "ës së parë (shek. V-VI) e më pas të bazilikës Bizantine " +
                         "(shek. IX), vihen mbi themelet e tempullit Pagan (para erës sonë) të përkushtuar hyjneshës ilire të plleshmërisë dhe lindjes: Prema apo Premta. ",
-                "Mbreti Millutin",
-                1307,
-                "Free",
+                "Monument",
+                "Arkitekturale",
+                "Mesjete e vone",
+                "XIV",
                 "Sahat Kulla,Prizren, 20000",
                 42.211491,
                 20.735211,
                 "Kishat",
                 R.drawable.premtes,
                 R.drawable.premtes));
-        monumentArrayList.add(new Monument(12,
+        monumentArrayList.add(new Monument( 2899,
                 "Kisha e Shën Gjorgjit",
                 "Kisha e Shën Gjorgjit është ndërtuar në fund të shekullit XV, nga vëllëzërit Runoviq dhe i ështe kushtuar Shën Gjorgjit",
                 "Ndodhet në Zonën Historike të qytetit të Prizrenit. Është ndërtuar në vitin 1615 nga ana e Sofi Sinan Pashës - person i shquar, njeri i dijes, me pozitë të rëndësishme në administratën Osmane. Me pozitën e saj dominuese, dimensionet, formën, proporcionin e minares ndaj kupolës, materialet dhe teknikën e ndërtimit, dekorimet e pasura në enterier, Xhamia e Sinan Pashës paraqet njërin prej monumenteve më karakteristike të Prizrenit. Xhamia është vendosur mbi një bazament të ngritur ku qasja nga rruga bëhet në anën veriore nëpërmjet shkallëve të gdhendura nga guri. Ka planimetri katrore me një nishë në pjesën jug-lindore që e bën xhaminë më specifike në krahasim me xhamitë tjera në Kosovë. Është ndërtuar nga gurët lumorë të latuar, të lidhur me llaç gëlqeror, ndërsa nga ana e jashtme është veshur me gurë të gdhendur (të cilët supozohet që janë marrë nga gërmadhat e Manastirit të Kryeengjëjve). Minarja e xhamisë është ndërtuar prej gurëve shtufe (siga), me bazë katrore dhe trung rrethor. Në pjesën e sipërme ndodhet një Sherefe. Para hyrjes në xhami ndodhet hajati i hapur, i punuar prej guri. Hajati ka tri kupola të mbuluara me plumb të cilat mbështeten në shtylla guri me bazë rrethore. Xhamia mbulohet me një kupolë të gjerë më diametër 42.5 m. Enterieri është hapësirë unike, e ndriçuar përmes dritareve të radhitura në nivele, me kupolë të pikturuar me motive florale në tri faza. ",
-                "Vëllëzërit Runoviq",
-                0,
-                "Free",
+                "Monument",
+                "Arkitekturale",
+                "Mesjete e vone",
+                "XIV",
                 "Sheshi i Shadervanit, Prizren, 20000",
                 42.208275,
                 20.740019,
                 "Kishat",
                 R.drawable.gjorgjit,
                 R.drawable.gjorgjit));
-        monumentArrayList.add(new Monument(13,
+        monumentArrayList.add(new Monument(2908,
                 "Kisha e Dielës se Shenjtë",
                 "Kisha e Dielës së Shenjtë gjendet në Kompleksin e Nën-Kalasë. Eshte ndërtim i dimensioneve të vogla.",
                 "Kisha e Dielës së Shenjtë gjendet në Kompleksin e Nën-Kalasë. Eshte ndërtim i dimensioneve të vogla, me kupolën " +
                         "tetëkëndëshe, e ndërtuar me material prej guri e tullave.",
-                "I panjohur",
-                1615,
-                "Free",
+                "Monument",
+                "Arkitekturale",
+                "Mesjete e vone",
+                "XIV",
                 "Vatra Shqipetare, Prizren, 20000",
                 42.209097,
                 20.742514,
@@ -170,7 +191,7 @@ public class MonumentsFragment extends Fragment {
 
         ///Urat
 
-        monumentArrayList.add(new Monument(101,
+        monumentArrayList.add(new Monument(430,
                 "Ura e vjetër e Gurit",
                 "Ura e Gurit gjendet në qendrën historike të qytetit. Në anën lindore të saj gjendet Ura e Arastës, kurse në anën perëndimore gjendet Ura e Naletit",
                 "Përmes Prizrenit kalon lumi Lumbardh i cili e ndan qytetin në dy pjesë, pothuajse të barabarta." +
@@ -196,9 +217,10 @@ public class MonumentsFragment extends Fragment {
                         " Kështu ura natyrshëm vjen në ambientin e vet dhe vazhdon ta kryejë funksionin e urës për këmbësorë. Duke marrë" +
                         " në konsideratë vlerat e mirëfillta të trashëgimisë, Ura e Gurit me vendimin nr. 2345 të datës 31 dhjetor 1948 v" +
                         "ihet nën mbrojtje të shtetit.",
-                "I panjohur",
-                0,
-                "Free",
+                "Monument",
+                "Arkitekturale",
+                "Mesjete e vone",
+                "XIV",
                 "Ura e Gurit,Prizren,20000",
                 42.209568,
                 20.740694,
@@ -212,25 +234,26 @@ public class MonumentsFragment extends Fragment {
                         "Në bazë të disa dokumenteve qëndron që të ketë ekzisituar ura edhe më parë. Në popull është e njohur me " +
                         "emrin Ura e Tabakhanes, pasi që gjendet në pjesën e qytetit ku kryesishtë ishin zanatlinj të cilët" +
                         " merreshin me mbledhjen dhe përpunimin e lëkurës, e njohur edhe jashtë vendit",
-                "Suzi Çelebia",
-                1513,
-                "Free",
+                "Monument",
+                "Arkitekturale",
+                "Osmane",
+                "XVI",
                 "Suzi Çelebia,Prizren, 20000",
                 42.209724,
                 20.733659,
                 "Urat",
                 R.drawable.ura_soziut,
                 R.drawable.ura_soziut));
+
         monumentArrayList.add(new Monument(103,
-                "Ura e Marashit",
-                "Gjendet në Marash.",
-                "Gjendet në Marash.Gjendet në Marash.Gjendet në Marash.Gjendet në Marash.Gjendet në Marash.Gjendet në Marash." +
-                        "Gjendet në Marash.Gjendet në Marash.Gjendet në Marash.Gjendet në Marash.Gjendet në Marash.Gjendet në Marash." +
-                        "Gjendet në Marash.Gjendet në Marash.Gjendet në Marash.Gjendet në Marash.Gjendet në Marash.Gjendet në Marash.",
-                "Nuk dihet",
-                1936,
-                "Free",
-                "Vatra Shqipetare, Prizren, 20000",
+                "Ura e Grykes Lumbardhit",
+                "Në Grykën piktoreske të Lumbardhit, 5 km në verilindje të Prizrenit, në afërsi të gërmadhave të Manastirit të Kryeengjujve Mihail dhe Gabriel, e në anën e djathtë të rrugës së tanishme Prizren-Sredskë-Prevallë, gjendet Ura e Vjetër e Gurit.",
+                " Kjo urë është ndërtuar në aksin e rrugës së vjetër e cila nisej nga Prizreni, përgjatë grykës së Lumbardhit, e nëpër malin e Sharrit dilte në luginën e Vardarit, për në Shkup e tutje. Pra, prej kohësh, nëpërmjet kësaj rruge është zhvilluar komunikacioni dhe tregtia ndërmjet Prizrenit e Shkupit dhe anasjelltas. Për kohën e ndërtimit të saj nuk ka të dhëna as gojore e as të shkruara, por në bazë të ngjashmërisë së saj me Urën e Gurit të Qytetit, vihet në përfundim se këto dy ura janë kohanikë, në fund të shek. XV, ose në fillim të shek. XVI.",
+                "Monument",
+                "Arkitekturale",
+                "Osmane",
+                "XVI",
+                "Gryka e Lumbardhit, Prizren, 20000",
                 42.212325,
                 20.744633,
                 "Urat",
@@ -401,5 +424,18 @@ public class MonumentsFragment extends Fragment {
                 "Natyre",
                 R.drawable.brod,
                 R.drawable.brod));
+    }
+
+
+    public static Monument getMonumentById(String title)
+    {
+        initalizeData();
+        for (int i = 0; i < monumentArrayList.size(); i++) {
+            if (monumentArrayList.get(i).getTitle().equals(title)) {
+             return  (monumentArrayList.get(i));
+            }
+        }
+
+        return monumentArrayList.get(0);
     }
 }

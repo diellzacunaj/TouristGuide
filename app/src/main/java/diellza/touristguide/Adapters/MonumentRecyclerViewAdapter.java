@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+import diellza.touristguide.Activities.MainActivity;
 import diellza.touristguide.Models.Monument;
 import diellza.touristguide.R;
 
@@ -30,6 +31,9 @@ public class MonumentRecyclerViewAdapter extends RecyclerView.Adapter<MonumentRe
         return context;
     }
 
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -55,7 +59,7 @@ public class MonumentRecyclerViewAdapter extends RecyclerView.Adapter<MonumentRe
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView itemMonumentImg;
         TextView  itemMonumentTitle;
@@ -68,8 +72,16 @@ public class MonumentRecyclerViewAdapter extends RecyclerView.Adapter<MonumentRe
             itemMonumentImg=itemView.findViewById(R.id.itemMonumentImg);
             itemMonumentTitle=itemView.findViewById(R.id.itemMonumentTitle);
             itemMonumentOverview=itemView.findViewById(R.id.itemMonumentOverview);
+            itemView.setOnClickListener(this);
 
 
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (context instanceof OnItemClickListener) {
+                ((MainActivity) context).onItemClick(getAdapterPosition());
+            }
         }
     }
 }

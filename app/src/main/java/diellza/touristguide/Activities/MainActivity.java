@@ -1,22 +1,28 @@
 package diellza.touristguide.Activities;
 
+import android.content.Intent;
 import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
+import diellza.touristguide.Adapters.MonumentRecyclerViewAdapter;
 import diellza.touristguide.Fragments.CategoryFragment;
+import diellza.touristguide.Fragments.DetailFragment;
+import diellza.touristguide.Fragments.MonumentsFragment;
 import diellza.touristguide.Fragments.ScanFragment;
 import diellza.touristguide.Helpers.DisableShiftingBNV;
 import diellza.touristguide.Fragments.HomeFragment;
+import diellza.touristguide.Models.Monument;
 import diellza.touristguide.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MonumentRecyclerViewAdapter.OnItemClickListener {
 public  static final String COUNT_KEY="touristguide.activities.MainActivity";
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -92,4 +98,16 @@ if(count==0) {
                 .replace(R.id.flContent, f, f.getClass().getSimpleName()).addToBackStack(null).commit();
 
     }
-}
+    @Override
+    public void onItemClick(int position) {
+
+        Monument m = MonumentsFragment.getMonuments1().get(position);
+            Intent i = new Intent(MainActivity.this, DetailActivity.class);
+            i.putExtra(DetailFragment.TAG, m);
+            startActivity(i);
+
+        }
+    }
+
+
+
