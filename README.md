@@ -27,8 +27,6 @@ Software Dependencies:
 -----------------------
 Google Play Services is required for Google Maps.
 
-
-
 App launches with Splash Screen Activity and countinues with Home, second item of the menu is Scan.
 Scan requires user to allow permisson of using Camera.
 Google Maps requires user to allow permission to use Internet, Network State and to Write on External Storage.
