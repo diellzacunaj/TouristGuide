@@ -64,7 +64,7 @@ public class MonumentsFragment extends Fragment {
         MonumentRecyclerViewAdapter adapter = new MonumentRecyclerViewAdapter(monuments1, this.getContext());
         recyclerView.setAdapter(adapter);
 
-        saveData();
+        //saveData();
         return v;
     }
 
