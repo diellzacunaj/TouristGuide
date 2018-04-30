@@ -24,4 +24,6 @@ vlefshme për turistët do të ishte më I dobishëm dhe praktik.</string>
     <string name="detail_history">History</string>
     <string name="get_directions">Get Directions</string>
     <string name="title_detail_activity">Detail Activity</string>
+
+    <string name="google_maps_key">AIzaSyD6Rl7m2fsEmxAl02mqL-JeRsV_ZYjQ1M8</string>
 </resources>
