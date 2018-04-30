@@ -1,6 +1,5 @@
 package diellza.touristguide.Fragments;
 
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -86,10 +85,6 @@ public class DetailFragment extends Fragment {
         typeTxt.setText(monument.getType());
        // itemDetailImg.setImageResource(monument.getHistoryImg());
         Glide.with(getContext()).load(monument.getHistoryImg()).override(500,220).into(itemDetailImg);
-
-
-
-
 
         return v;
     }

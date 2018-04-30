@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+
+
 import diellza.touristguide.Fragments.DetailFragment;
 import diellza.touristguide.Fragments.MonumentsFragment;
 import diellza.touristguide.R;
@@ -46,6 +48,5 @@ public class DetailActivity extends AppCompatActivity {
 
 
     }
-
 
 }

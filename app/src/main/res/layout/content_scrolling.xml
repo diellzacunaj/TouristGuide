@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,6 +15,16 @@
         android:orientation="vertical"
         android:padding="20dp">
 
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/googleMap"
+            android:name="com.google.android.gms.maps.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginBottom="10dp"
+            map:cameraTargetLat="42.212756"
+            map:cameraTargetLng="20.741943"
+            map:cameraZoom="17" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,8 +36,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 android:layout_weight="2"
-                app:srcCompat="@drawable/ic_directions"
-                android:clickable="true"/>
+                android:clickable="true"
+                app:srcCompat="@drawable/ic_directions" />
 
             <ImageView
                 android:layout_width="0dp"
@@ -61,6 +72,7 @@
                 android:gravity="center"
                 android:text="Address" />
         </LinearLayout>
+
 
         <View
             android:layout_width="match_parent"
