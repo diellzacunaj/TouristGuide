@@ -6,7 +6,6 @@ see more detailed informations about them and get directions to their locations.
 Application its still in the development phase.
 App is built for Android mobile platform (specifically API Level: 19. Android 4.4.4 ( KITKAT ) and above). 
 
-
 FEATURES:
 Scroll through the list of monuments
 Scan qr code and get a detailed information about that monument
