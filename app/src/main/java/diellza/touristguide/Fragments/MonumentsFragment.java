@@ -141,6 +141,13 @@ public class MonumentsFragment extends Fragment {
         Log.e("CLEAR",monuments1.size()+"");
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        monuments1.clear();
+        Log.e("CLEAR",monuments1.size()+"");
+    }
+
     private static void initalizeData() {
         monumentArrayList = new ArrayList<>();
 
