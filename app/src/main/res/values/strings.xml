@@ -14,7 +14,6 @@ perms web-faqeve dhe librave guide, mirëpo një aplikacion mobil që do të sig
 vlefshme për turistët do të ishte më I dobishëm dhe praktik.</string>
 
 
-
     <string name="unique_number">Unique number</string>
     <string name="name">Name</string>
     <string name="detail_class">Class</string>
@@ -25,5 +24,11 @@ vlefshme për turistët do të ishte më I dobishëm dhe praktik.</string>
     <string name="get_directions">Get Directions</string>
     <string name="title_detail_activity">Detail Activity</string>
 
-    <string name="google_maps_key">AIzaSyD6Rl7m2fsEmxAl02mqL-JeRsV_ZYjQ1M8</string>
+    <!--Google Maps credentials-->
+    <string name="google_maps_key">AIzaSyAWan2_YB4NDfS3fgc1ZYsbhYZXUM8YPwI</string>
+    <!--These two strings are not needed in the app, just saved them in case I need to
+    make modifications to Google Maps API Restrictions
+    CD to jdk directory when using CMD, then enter the cmd_line to get SHA-1 key-->
+    <string name="sha_1_key">31:4B:08:5A:C8:D5:2A:44:D7:16:E7:79:C4:52:82:94:2B:E6:0F:EF</string>
+    <string name="cmd_line">keytool -list -v -keystore c:(insert backslash)users\alimorina\.android\debug.keystore -alias androiddebugkey -storepass android -keypass android</string>
 </resources>
