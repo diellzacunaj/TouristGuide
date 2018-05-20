@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import diellza.touristguide.Activities.MainActivity;
 import diellza.touristguide.Fragments.MonumentsFragment;
 import diellza.touristguide.Models.Category;
 import diellza.touristguide.R;

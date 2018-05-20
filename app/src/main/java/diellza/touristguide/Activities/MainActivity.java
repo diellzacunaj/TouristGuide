@@ -1,6 +1,7 @@
 package diellza.touristguide.Activities;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -11,6 +12,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import diellza.touristguide.Adapters.MonumentRecyclerViewAdapter;
 import diellza.touristguide.Fragments.CategoryFragment;
@@ -24,6 +33,9 @@ import diellza.touristguide.R;
 
 public class MainActivity extends AppCompatActivity implements MonumentRecyclerViewAdapter.OnItemClickListener {
 public  static final String COUNT_KEY="touristguide.activities.MainActivity";
+
+public static  String JSON_STRING;
+    public static String jsonResult;
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -66,6 +78,8 @@ public  static final String COUNT_KEY="touristguide.activities.MainActivity";
             count = savedInstanceState.getInt(COUNT_KEY, 0);
         }
         setContentView(R.layout.activity_main);
+getJson();
+
 
 
 if(count==0) {
@@ -106,6 +120,78 @@ if(count==0) {
             i.putExtra(DetailFragment.TAG, m);
             startActivity(i);
 
+        }
+
+
+        public void getJson(){
+            new BackgroundTask().execute();
+            Log.e("ASYNC-TASK","EXECUTE");
+        }
+
+
+
+        class BackgroundTask extends AsyncTask<Void,Void,String> {
+
+            String jsonUrl;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                jsonUrl="http://workshop-maker.space/TourGuide/monuments.php";
+                Log.e("ASYNC-TASK","ON PRE EXECUTE");
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                Log.e("ASYNC-TASK","ON POST EXECUTE");
+                jsonResult=s;
+              //  Log.e("ASYNC-TASK",s);
+
+
+            }
+
+            @Override
+            protected void onProgressUpdate(Void... values) {
+                super.onProgressUpdate(values);
+            }
+
+            @Override
+            protected String doInBackground(Void... voids) {
+
+            Log.e("ASYNC-TASK","DO IN BACKGROUND");
+                URL url= null;
+                try {
+                    url = new URL(jsonUrl);
+                    HttpURLConnection connection=(HttpURLConnection)url.openConnection();
+                    InputStream inputStream=connection.getInputStream();
+                    BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream));
+                    StringBuilder stringBuilder=new StringBuilder();
+
+                    while ((JSON_STRING=bufferedReader.readLine())!=null){
+
+                        stringBuilder.append(JSON_STRING);
+                    }
+
+                    Log.e("ASYNC-TASK",stringBuilder.length()+"");
+
+                    bufferedReader.close();
+                    inputStream.close();
+                    connection.disconnect();
+
+                    return stringBuilder.toString();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+              return null;
+            }
+        }
+
+
+        public static String getJsonResult(){
+            return jsonResult;
         }
     }
 

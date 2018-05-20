@@ -84,7 +84,7 @@ public class DetailFragment extends Fragment {
         classTxt.setText(monument.getClassName());
         typeTxt.setText(monument.getType());
        // itemDetailImg.setImageResource(monument.getHistoryImg());
-        Glide.with(getContext()).load(monument.getHistoryImg()).override(500,220).into(itemDetailImg);
+        Glide.with(getContext()).load(monument.getOverviewImg()).override(500,220).into(itemDetailImg);
 
         return v;
     }

@@ -1,24 +1,39 @@
 package diellza.touristguide.Models;
 
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class Monument implements Serializable{
 
-    private long ID;
+    @SerializedName("id")
+    private int ID;
+    @SerializedName("title")
     private String title;
+    @SerializedName("overview")
     private String overview;
+    @SerializedName("history")
     private String history;
+    @SerializedName("className")
     private String className;
+    @SerializedName("type")
     private String type;
+    @SerializedName("period")
     private String period;
+    @SerializedName("century")
     private String century;
+    @SerializedName("address")
     private String address;
+    @SerializedName("longitude")
     private double longitude;
+    @SerializedName("latitude")
     private double latitude;
+    @SerializedName("category")
     private String category;
-    private int overviewImg;
-    private int historyImg;
+    @SerializedName("overviewImg")
+    private String overviewImg;
+
 
     public Monument(int ID,
                     String title,
@@ -27,7 +42,7 @@ public class Monument implements Serializable{
                     String className, String type,
                     String period,
                     String century,String address, double longitude, double latitude, String category,
-                    int overviewImg, int historyImg) {
+                    String overviewImg) {
         this.ID = ID;
         this.title = title;
         this.overview = overview;
@@ -41,11 +56,11 @@ public class Monument implements Serializable{
         this.latitude = latitude;
         this.category = category;
         this.overviewImg = overviewImg;
-        this.historyImg = historyImg;
+
     }
 
     public Monument(int ID, String title, String overview, String history, String address, double longitude, double latitude,
-                    String category, int overviewImg, int historyImg) {
+                    String category, String overviewImg) {
         this.ID = ID;
         this.title = title;
         this.overview = overview;
@@ -55,14 +70,14 @@ public class Monument implements Serializable{
         this.latitude = latitude;
         this.category = category;
         this.overviewImg = overviewImg;
-        this.historyImg = historyImg;
+
     }
 
     public long getID() {
         return ID;
     }
 
-    public void setID(long ID) {
+    public void setID(int ID) {
         this.ID = ID;
     }
 
@@ -132,17 +147,13 @@ public class Monument implements Serializable{
         this.category = category;
     }
 
-    public int getOverviewImg() {   return overviewImg;   }
+    public String getOverviewImg() {   return overviewImg;   }
 
-    public void setOverviewImg(int overviewImg) {
+    public void setOverviewImg(String overviewImg) {
         this.overviewImg = overviewImg;
     }
 
-    public int getHistoryImg() {  return historyImg;    }
 
-    public void setHistoryImg(int historyImg) {
-        this.historyImg = historyImg;
-    }
 
     public String getType() {
         return type;
