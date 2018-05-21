@@ -12,6 +12,8 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,14 @@ import android.widget.TextView;
 
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.Locale;
 
@@ -28,7 +38,7 @@ import diellza.touristguide.Models.Monument;
 import diellza.touristguide.R;
 
 
-public class DetailFragment extends Fragment {
+public class DetailFragment extends Fragment implements OnMapReadyCallback {
     public static final String TAG = "diellza.touristguide.Fragments.DetailFragment";
 
     ImageView itemDetailImg;
@@ -36,6 +46,9 @@ public class DetailFragment extends Fragment {
     TextView addressTxt, uniqueNumberTxt, nameTxt, periodTxt, centuryTxt, classTxt, typeTxt, historyTxt, directionsTxt;
     Monument monument;
     CollapsingToolbarLayout layout;
+
+    GoogleMap mMap;
+    SupportMapFragment mapFragment;
 
     public DetailFragment() {
     }
@@ -53,9 +66,6 @@ public class DetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
         monument = (Monument) getArguments().getSerializable(TAG);
 
-        if (!isGoogleMapsInstalled()) {
-
-        }
 
     }
 
@@ -96,6 +106,17 @@ public class DetailFragment extends Fragment {
         centuryTxt.setText(monument.getCentury());
         classTxt.setText(monument.getClassName());
         typeTxt.setText(monument.getType());
+
+
+        //initialization of mapFragment
+        mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.googleMap);
+        if (mapFragment == null) {
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            mapFragment = SupportMapFragment.newInstance();
+            ft.replace(R.id.googleMap, mapFragment).commit();
+        }
+        mapFragment.getMapAsync(this);
 
         directions.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,4 +208,19 @@ public class DetailFragment extends Fragment {
         }
     }
 
+    //function that adds the marker pin in mapFragment
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        LatLng latLng = new LatLng(monument.getLongitude(), monument.getLatitude());
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(latLng);
+        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET));
+        markerOptions.title("Current Postition");
+        markerOptions.snippet("My Position");
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+        mMap.setMinZoomPreference(17);
+        mMap.addMarker(markerOptions);
+    }
 }

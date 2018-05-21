@@ -20,10 +20,7 @@
             android:name="com.google.android.gms.maps.MapFragment"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:layout_marginBottom="10dp"
-            map:cameraTargetLat="42.212756"
-            map:cameraTargetLng="20.741943"
-            map:cameraZoom="17" />
+            android:layout_marginBottom="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -242,7 +239,7 @@
 
         <Space
             android:layout_width="1dp"
-            android:layout_height="150dp"/>
+            android:layout_height="150dp" />
     </LinearLayout>
 
 
