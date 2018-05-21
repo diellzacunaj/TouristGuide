@@ -240,6 +240,9 @@
             android:layout_marginTop="10dp"
             android:text="Xhamia e Sinan Pashës ndodhet në Zonën Historike të qytetit të Prizrenit. Është ndërtuar në vitin 1615 nga ana e Sofi Sinan Pashës - person i shquar, njeri i dijes, me pozitë të rëndësishme në administratën Osmane. Me pozitën e saj dominuese, dimensionet, formën, proporcionin e minares ndaj kupolës, materialet dhe teknikën e ndërtimit, dekorimet e pasura në enterier, Xhamia e Sinan Pashës paraqet njërin prej monumenteve më karakteristike të Prizrenit. Xhamia është vendosur mbi një bazament të ngritur ku qasja nga rruga bëhet në anën veriore nëpërmjet shkallëve të gdhendura nga guri. Ka planimetri katrore me një nishë në pjesën jug-lindore që e bën xhaminë më specifike në krahasim me xhamitë tjera në Kosovë. Është ndërtuar nga gurët lumorë të latuar, të lidhur me llaç gëlqeror, ndërsa nga ana e jashtme është veshur me gurë të gdhendur (të cilët supozohet që janë marrë nga gërmadhat e Manastirit të Kryeengjëjve). Minarja e xhamisë është ndërtuar prej gurëve shtufe (siga), me bazë katrore dhe trung rrethor. Në pjesën e sipërme ndodhet një Sherefe. Para hyrjes në xhami ndodhet hajati i hapur, i punuar prej guri. Hajati ka tri kupola të mbuluara me plumb të cilat mbështeten në shtylla guri me bazë rrethore. Xhamia mbulohet me një kupolë të gjerë më diametër 42.5 m. Enterieri është hapësirë unike, e ndriçuar përmes dritareve të radhitura në nivele, me kupolë të pikturuar me motive florale në tri faza. " />
 
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="150dp"/>
     </LinearLayout>
 
 

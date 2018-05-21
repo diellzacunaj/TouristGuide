@@ -31,4 +31,6 @@ vlefshme për turistët do të ishte më I dobishëm dhe praktik.</string>
     CD to jdk directory when using CMD, then enter the cmd_line to get SHA-1 key-->
     <string name="sha_1_key">31:4B:08:5A:C8:D5:2A:44:D7:16:E7:79:C4:52:82:94:2B:E6:0F:EF</string>
     <string name="cmd_line">keytool -list -v -keystore c:(insert backslash)users\alimorina\.android\debug.keystore -alias androiddebugkey -storepass android -keypass android</string>
+    <string name="google_maps_missing_title">Google Maps is missing!</string>
+    <string name="google_maps_missing_message">Google Maps is required to get directions for the desired location. Press OK if you want to install Google Maps</string>
 </resources>
