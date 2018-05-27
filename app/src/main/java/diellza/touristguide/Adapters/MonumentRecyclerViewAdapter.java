@@ -1,6 +1,7 @@
 package diellza.touristguide.Adapters;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -43,13 +46,29 @@ public class MonumentRecyclerViewAdapter extends RecyclerView.Adapter<MonumentRe
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        Monument monument=monuments.get(position);
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
+        final Monument monument=monuments.get(position);
         holder.itemMonumentTitle.setText(monument.getTitle());
         holder.itemMonumentOverview.setText(monument.getOverview());
-      //  Log.d("IMAZHI",monument.getOverviewImg());
-        Glide.with(getContext()).load(monument.getOverviewImg()).override(300,340).into(holder.itemMonumentImg);
 
+
+        Picasso.with(context).load(Uri.parse(monument.getOverviewImg()))
+                .networkPolicy(NetworkPolicy.OFFLINE)
+                .into(holder.itemMonumentImg, new Callback() {
+                    @Override
+
+                    public void onSuccess() {
+                    }
+
+                    @Override
+                    public void onError() {
+                        // Try again online if cache failed
+                        Picasso.with(context)
+                                .load(Uri.parse(monument.getOverviewImg()))
+                                .error(R.drawable.nowifi)
+                                .into(holder.itemMonumentImg);
+                    }
+                });
 
     }
 

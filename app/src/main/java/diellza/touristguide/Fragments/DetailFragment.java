@@ -22,7 +22,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-import com.bumptech.glide.Glide;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -31,6 +31,9 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import java.util.Locale;
 
@@ -156,8 +159,26 @@ public class DetailFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
-        // itemDetailImg.setImageResource(monument.getHistoryImg());
-        Glide.with(getContext()).load(monument.getOverviewImg()).override(500, 220).into(itemDetailImg);
+
+
+        Picasso.with(getContext()).load(Uri.parse(monument.getOverviewImg()))
+                .networkPolicy(NetworkPolicy.OFFLINE)
+                .into(itemDetailImg, new Callback() {
+                    @Override
+
+                    public void onSuccess() {
+                    }
+
+                    @Override
+                    public void onError() {
+                        // Try again online if cache failed
+                        Picasso.with(getContext())
+
+                                .load(Uri.parse(monument.getOverviewImg()))
+                                .error(R.drawable.nowifibg)
+                                .into(itemDetailImg);
+                    }
+                });
 
         return v;
     }

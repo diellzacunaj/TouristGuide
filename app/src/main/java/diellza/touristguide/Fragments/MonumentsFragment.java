@@ -55,26 +55,19 @@ public class MonumentsFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        startActivity(new Intent(getActivity(),RefreshService.class));
+
 
 
 setHasOptionsMenu(true);
  db= new DBAdapter(getContext());
-//        if(isNetworkAvailable()) {
-//            getActivity().startService(new Intent(getActivity(),RefreshService.class));
-//        }
-      //  saveData();
-//       if(isNetworkAvailable()){
-//         monumentArrayList=MonumentArrayList.getArray();
-//       }else {
-           //Toast.makeText(getContext(), "For better performance please connect to internet", Toast.LENGTH_SHORT).show();
+
            monumentArrayList = db.getMonuments();
 
 
         if(isNetworkAvailable() && MainActivity.getJsonResult()!=""){
            monumentArrayList=MonumentArrayList.getArray();
         }
-     //  }
+
 
     }
 
@@ -88,14 +81,8 @@ setHasOptionsMenu(true);
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //Intent intent = new Intent(this, UpdaterService.class);
         switch (item.getItemId()) {
-//            case R.id.startService:
-//                startService(intent);
-//                return true;
-//            case R.id.stopService:
-//                stopService(intent);
-//                return true;
+
             case R.id.refreshService:
                 if(isNetworkAvailable()) {
                     getActivity().startService(new Intent(getActivity(), RefreshService.class));
@@ -103,9 +90,7 @@ setHasOptionsMenu(true);
                     Toast.makeText(getContext(), "No internet connection", Toast.LENGTH_SHORT).show();
                 }
                 return true;
-//            case R.id.preferences:
-//                startActivity(new Intent(this, PrefsActivity.class));
-//                return true;
+
             default:
                 return false;
         }
@@ -142,9 +127,10 @@ setHasOptionsMenu(true);
         Bundle bundle = getArguments();
         title = bundle.getString(CategoryRecyclerViewAdapter.CATEGORY_TITLE, "");
 
+
         if (title != "") {
 
-
+            ((MainActivity) getActivity()).setTitle(title);
             for (int i = 0; i < monumentArrayList.size(); i++) {
 
                 if (monumentArrayList.get(i).getCategory().equals(title)) {
@@ -157,6 +143,7 @@ setHasOptionsMenu(true);
 
     public static Monument getMonumentById(String title)
     {
+
 
 
         if( MainActivity.getJsonResult()!=""){
