@@ -131,24 +131,22 @@ setHasOptionsMenu(true);
 
     public ArrayList<Monument> getMonumentsByCategory(){
 
-//        if(isNetworkAvailable()){
-//            monumentArrayList=MonumentArrayList.getArray();
-//        }else {
+
             monumentArrayList = db.getMonuments();
 
 
         if(isNetworkAvailable()){
             monumentArrayList=MonumentArrayList.getArray();
       }
-       // }
+
         Bundle bundle = getArguments();
         title = bundle.getString(CategoryRecyclerViewAdapter.CATEGORY_TITLE, "");
 
         if (title != "") {
 
-        //    Log.e("MRENA", "" + monumentArrayList.size());
+
             for (int i = 0; i < monumentArrayList.size(); i++) {
-          //      Log.e("MRENA", monumentArrayList.get(i).getCategory() + " KATEGORY");
+
                 if (monumentArrayList.get(i).getCategory().equals(title)) {
                     monuments1.add(monumentArrayList.get(i));
                 }
@@ -159,9 +157,7 @@ setHasOptionsMenu(true);
 
     public static Monument getMonumentById(String title)
     {
-//        if( db.getMonuments()!=null) {
-//            monumentArrayList = db.getMonuments();
-//        }
+
 
         if( MainActivity.getJsonResult()!=""){
             monumentArrayList=MonumentArrayList.getArray();
@@ -178,7 +174,6 @@ setHasOptionsMenu(true);
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Log.e("STATE", "ON DESTROY VIEW");
         monuments1.clear();
     }
 
@@ -186,7 +181,7 @@ setHasOptionsMenu(true);
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.e("RECIEVER"," ON RECIEVE");
+
 
 if (monuments1.size()!=0){
     monuments1.clear();
