@@ -29,6 +29,7 @@ public class ScanQRCodeActivity extends AppCompatActivity implements ZXingScanne
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_qrcode);
         addScanView();
+
     }
 
     private void addScanView() {

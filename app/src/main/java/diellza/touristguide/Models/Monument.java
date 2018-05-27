@@ -4,6 +4,8 @@ package diellza.touristguide.Models;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Monument implements Serializable{
 
@@ -33,6 +35,7 @@ public class Monument implements Serializable{
     private String category;
     @SerializedName("overviewImg")
     private String overviewImg;
+    private long createdAt;
 
 
     public Monument(int ID,
@@ -56,7 +59,7 @@ public class Monument implements Serializable{
         this.latitude = latitude;
         this.category = category;
         this.overviewImg = overviewImg;
-
+this.createdAt=System.currentTimeMillis();
     }
 
     public Monument(int ID, String title, String overview, String history, String address, double longitude, double latitude,
@@ -70,6 +73,7 @@ public class Monument implements Serializable{
         this.latitude = latitude;
         this.category = category;
         this.overviewImg = overviewImg;
+        this.createdAt=System.currentTimeMillis();
 
     }
 
@@ -153,8 +157,6 @@ public class Monument implements Serializable{
         this.overviewImg = overviewImg;
     }
 
-
-
     public String getType() {
         return type;
     }
@@ -177,5 +179,13 @@ public class Monument implements Serializable{
 
     public void setCentury(String century) {
         this.century = century;
+    }
+
+    public long getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(long createdAt) {
+        this.createdAt = createdAt;
     }
 }
