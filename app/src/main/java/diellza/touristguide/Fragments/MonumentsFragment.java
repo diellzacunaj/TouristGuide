@@ -14,6 +14,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -35,7 +36,7 @@ import diellza.touristguide.Models.Monument;
 import diellza.touristguide.R;
 
 
-public class MonumentsFragment extends Fragment {
+public class MonumentsFragment extends Fragment implements SearchView.OnQueryTextListener{
     public static final String ACTION_STATUS = "com.diellza.fragments.UPDATE_STATUS";
     String title;
     private RecyclerView recyclerView;
@@ -75,8 +76,11 @@ setHasOptionsMenu(true);
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
-        getActivity().getMenuInflater().inflate(R.menu.action_menu, menu);
-        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.action_menu, menu);
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView)menuItem.getActionView();
+        searchView.setOnQueryTextListener(this);
+        super.onCreateOptionsMenu(menu,inflater);
     }
 
     @Override
@@ -108,7 +112,7 @@ setHasOptionsMenu(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getActivity());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
-     adapter = new MonumentRecyclerViewAdapter(getMonumentsByCategory(), this.getContext());
+        adapter = new MonumentRecyclerViewAdapter(getMonumentsByCategory(), this.getContext());
         recyclerView.setAdapter(adapter);
         return v;
     }
@@ -271,5 +275,40 @@ if (monuments1.size()!=0){
                 = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        final List<Monument> filteredModelList = filter(monuments1, newText);
+        if (filteredModelList.size() > 0) {
+            adapter.setFilter(filteredModelList);
+            return true;
+        } else {
+            Toast.makeText(this.getContext(), "Not Found", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    private List<Monument> filter(List<Monument> monumentsList, String query) {
+        query = query.toLowerCase();
+
+        final List<Monument> filteredModelList = new ArrayList<>();
+        for (Monument model : monumentsList) {
+            final String text = model.getTitle().toLowerCase();
+            if (text.contains(query)) {
+                filteredModelList.add(model);
+
+            }
+        }
+        adapter = new MonumentRecyclerViewAdapter(filteredModelList, getContext());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        return filteredModelList;
     }
 }

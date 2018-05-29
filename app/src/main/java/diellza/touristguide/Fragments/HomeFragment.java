@@ -18,7 +18,6 @@ import diellza.touristguide.R;
 public class HomeFragment extends Fragment {
 
     Button view_categories, qr_code;
-    SearchView searchView;
 
     @Nullable
     @Override
@@ -27,16 +26,6 @@ public class HomeFragment extends Fragment {
         View v=inflater.inflate(R.layout.activity_home,container,false);
         ((MainActivity) getActivity()).setTitle("Home");
        MainActivity.setNavItemChecked(0);
-
-        searchView = new SearchView(getContext());
-        searchView.setOnSearchClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //todo search view implementation
-            }
-        });
-
-
 
         return v;
 

@@ -13,6 +13,7 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import diellza.touristguide.Activities.MainActivity;
@@ -102,5 +103,10 @@ public class MonumentRecyclerViewAdapter extends RecyclerView.Adapter<MonumentRe
                 ((MainActivity) context).onItemClick(getAdapterPosition());
             }
         }
+    }
+    public void setFilter(List<Monument> monumentsList) {
+        monuments = new ArrayList<>();
+        monuments.addAll(monumentsList);
+        notifyDataSetChanged();
     }
 }
