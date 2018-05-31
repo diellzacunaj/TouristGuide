@@ -25,6 +25,7 @@ public class FavoritesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorites);
 
+        this.setTitle("Favorites");
         //RECYCLERVIEW
         rv= (RecyclerView) findViewById(R.id.rvMonument);
         rv.setLayoutManager(new LinearLayoutManager(this));
