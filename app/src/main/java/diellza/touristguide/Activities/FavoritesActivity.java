@@ -45,11 +45,9 @@ public class FavoritesActivity extends AppCompatActivity {
         while (c.moveToNext())
         {
             String title=c.getString(0);
-            String overview=c.getString(1);
-            String url=c.getString(2);
+            String url=c.getString(1);
 
             Monument monument = new Monument();
-            monument.setOverview(overview);
             monument.setTitle(title);
             monument.setOverviewImg(url);
 

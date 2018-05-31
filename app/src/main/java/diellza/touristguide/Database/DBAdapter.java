@@ -126,48 +126,11 @@ db.insertWithOnConflict(Constants.TB_NAME, null, cv,SQLiteDatabase.CONFLICT_IGNO
       db1.close();
         return  mArrayList;
     }
-    //RETRIEVE MONUMENTS FROM FAVORITES
-    public ArrayList<Monument> getFavorites2()
-    {
-        SQLiteDatabase db1=helper.getReadableDatabase();
-        Log.e("DATABASE","readable");
-        Cursor c=db1.rawQuery("SELECT * FROM  Favorites",null);
-        Log.e("DATABASE","cursor");
-
-        ArrayList<Monument> mArrayList = new ArrayList<Monument>();
-        if (c.moveToFirst()) {
-            do {
-                Log.e("DATABASE","1  /n");
-                Log.e("DATABASE",c.getColumnCount()+"");
-
-                String [] names=c.getColumnNames();
-                for (String name:names
-                        ) {
-                    Log.e("NAMES",name);
-
-                }
-
-                mArrayList.add(new Monument(c.getInt(c.getColumnIndex(Constants.ID)), c.getString(c.getColumnIndex(Constants.title)), c.getString(c.getColumnIndex(Constants.overview)),
-                        c.getString(c.getColumnIndex(Constants.history)), c.getString(c.getColumnIndex(Constants.className)),
-                        c.getString(c.getColumnIndex(Constants.type)), c.getString(c.getColumnIndex(Constants.period)),
-                        c.getString(c.getColumnIndex(Constants.century)), c.getString(c.getColumnIndex(Constants.address)),
-                        (c.getDouble(c.getColumnIndex(Constants.longitude))),  c.getDouble(c.getColumnIndex(Constants.latitude)),
-                        c.getString(c.getColumnIndex(Constants.category)), c.getString(c.getColumnIndex(Constants.imageURL)))); //add the item
-                Log.e("DATABASE","1  /n");
-            }while(c.moveToNext());
-
-            c.moveToNext();
-        }
-
-        c.close();
-        db1.close();
-        return  mArrayList;
-    }
 
     //RETRIEVE
     public Cursor getFavorites()
     {
-        String[] columns={Constants.title,Constants.overview, Constants.imageURL};
+        String[] columns={Constants.title, Constants.imageURL};
 
         return db.query(Constants.TB_FAVORITES,columns,null,null,null,null,null);
     }
