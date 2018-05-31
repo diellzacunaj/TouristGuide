@@ -144,4 +144,15 @@ db.insertWithOnConflict(Constants.TB_NAME, null, cv,SQLiteDatabase.CONFLICT_IGNO
         db.close();
     }
 
+    public boolean isFavorite(String title){
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(" SELECT * FROM Favorites WHERE title = '"+title+"';", null);
+        if(cursor.getCount() <= 0){
+            cursor.close();
+            return false;
+        }
+        cursor.close();
+        return true;
+    }
+
 }

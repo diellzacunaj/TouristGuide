@@ -111,10 +111,16 @@ public class DetailFragment extends Fragment implements OnMapReadyCallback {
             public void onClick(View view) {
 
                 if(isNetworkAvailable()) {
-                    getActivity().startService(new Intent(getActivity(), RefreshService.class));
-                    adapter.setFavorite(monument.getTitle());
-                    Snackbar.make(view, monument.getTitle()+" added to favorite", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    if(adapter.isFavorite(monument.getTitle())){
+                        Snackbar.make(view, monument.getTitle()+" is already added to favorite", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                    }
+                    else {
+                        getActivity().startService(new Intent(getActivity(), RefreshService.class));
+                        adapter.setFavorite(monument.getTitle());
+                        Snackbar.make(view, monument.getTitle() + " added to favorite", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                    }
                 }else{
                     Snackbar.make(view, "Could'nt add "+monument.getTitle()+
                             " to favorite.\nTo add tis item as favorite first go to list of monuments and typre refresh button.", Snackbar.LENGTH_LONG)
