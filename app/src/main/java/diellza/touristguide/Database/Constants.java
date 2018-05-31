@@ -23,11 +23,14 @@ public class Constants {
     //DB PROPERTIES
     static final String DB_NAME="TouristGuide";
     static final String TB_NAME="Monumentet";
-    static final String TB_NAME1="Monuments";
-    static final int DB_VERSION=1;
+    static final String TB_FAVORITES="Favorites";
+    static final int DB_VERSION=2;
 
     //CREATE TABLE STMT
     static final String CREATE_TB="CREATE TABLE Monumentet(id INTEGER PRIMARY KEY,"
+            + " title TEXT, overview TEXT, history TEXT, className TEXT, type TEXT, period TEXT, century TEXT, address TEXT, " +
+            " longitude REAL, latitude REAL, category TEXT, Image_URL TEXT );";
+    static final String CREATE_FAVORITES="CREATE TABLE Favorites(id INTEGER PRIMARY KEY,"
             + " title TEXT, overview TEXT, history TEXT, className TEXT, type TEXT, period TEXT, century TEXT, address TEXT, " +
             " longitude REAL, latitude REAL, category TEXT, Image_URL TEXT );";
 

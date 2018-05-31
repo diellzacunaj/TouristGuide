@@ -1,10 +1,13 @@
 package diellza.touristguide.Fragments;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -20,7 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.widget.Toast;
 
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -37,6 +40,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.Locale;
 
+import diellza.touristguide.Database.DBAdapter;
+import diellza.touristguide.Helpers.RefreshService;
 import diellza.touristguide.Models.Monument;
 import diellza.touristguide.R;
 
@@ -49,6 +54,7 @@ public class DetailFragment extends Fragment implements OnMapReadyCallback {
     TextView addressTxt, uniqueNumberTxt, nameTxt, periodTxt, centuryTxt, classTxt, typeTxt, historyTxt, directionsTxt;
     Monument monument;
     CollapsingToolbarLayout layout;
+    DBAdapter adapter;
 
     GoogleMap mMap;
     SupportMapFragment mapFragment;
@@ -56,6 +62,12 @@ public class DetailFragment extends Fragment implements OnMapReadyCallback {
     public DetailFragment() {
     }
 
+    public boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
 
     public static DetailFragment newInstance(String param1, String param2) {
         DetailFragment fragment = new DetailFragment();
@@ -90,12 +102,25 @@ public class DetailFragment extends Fragment implements OnMapReadyCallback {
         layout = v.findViewById(R.id.toolbar_layout);
         directionsTxt = v.findViewById(R.id.getDirectionsTxt);
 
+        Context context = this.getContext();
+        adapter = new DBAdapter(context);
+
         FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Added to favorite", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                if(isNetworkAvailable()) {
+                    getActivity().startService(new Intent(getActivity(), RefreshService.class));
+                    adapter.setFavorite(monument.getTitle());
+                    Snackbar.make(view, monument.getTitle()+" added to favorite", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }else{
+                    Snackbar.make(view, "Could'nt add "+monument.getTitle()+
+                            " to favorite.\nTo add tis item as favorite first go to list of monuments and typre refresh button.", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+
             }
         });
 

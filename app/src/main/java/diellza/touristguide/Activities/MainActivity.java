@@ -84,6 +84,8 @@ public class MainActivity extends AppCompatActivity implements MonumentRecyclerV
                     showFragment(fragment);
                     return true;
                 case R.id.navigation_favorites:
+                    Intent i = new Intent(MainActivity.this, FavoritesActivity.class);
+                    startActivity(i);
                     return true;
             }
             return false;

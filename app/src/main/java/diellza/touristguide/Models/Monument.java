@@ -76,6 +76,7 @@ this.createdAt=System.currentTimeMillis();
         this.createdAt=System.currentTimeMillis();
 
     }
+    public Monument(){}
 
     public long getID() {
         return ID;

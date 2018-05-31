@@ -33,4 +33,7 @@ vlefshme për turistët do të ishte më I dobishëm dhe praktik.</string>
     <string name="cmd_line">keytool -list -v -keystore c:(insert backslash)users\alimorina\.android\debug.keystore -alias androiddebugkey -storepass android -keypass android</string>
     <string name="google_maps_missing_title">Google Maps is missing!</string>
     <string name="google_maps_missing_message">Google Maps is required to get directions for the desired location. Press OK if you want to install Google Maps</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
